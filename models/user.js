@@ -26,7 +26,7 @@ const userSchema = new Schema({
         default:'/public/images/default.png'
     },
     role:{
-        type:'String',
+        type:String,
         enum:["USER","ADMIN"],
         default:"USER"
     }
@@ -55,7 +55,7 @@ userSchema.static('matchPassword',async function(email,password){
     const hashedPassword = user.password;
 
     const userProvidedHash = createHmac('sha256',salt)
-    .update(user.password)
+    .update(password)
     .digest("hex");
 
     if(hashedPassword !== userProvidedHash)throw new Error('Incorrect Password')
