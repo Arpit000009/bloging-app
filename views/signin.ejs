@@ -11,6 +11,11 @@
         <%-include('./partials/nav.ejs') %>
 
             <div class="container mt-4">
+                <% if (typeof error !=='undefined' ) { %>
+                    <div class="alert alert-danger" role="alert">
+                        <%= error %>
+                    </div> <% } %>
+                    
                 <form action="/user/signin" method="post">
                     
                     <div class="mb-3">
