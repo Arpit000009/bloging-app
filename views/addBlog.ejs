@@ -11,7 +11,7 @@
      <%-include('./partials/nav.ejs') %>
 
         <div class="container mt-3">
-        <form action="/blog" method="post">
+        <form action="/blog" method="post" enctype="multipart/form-data">
             <div class="mb-3">
                 <label for="coverImage" class="form-label">Cover Image</label>
                 <input type="file" class="form-control" id="coverImage" name="coverImage" aria-describedby="coverImage">
@@ -26,7 +26,7 @@
             </div>
             <div class="mb-3">
                 <label for="body" class="form-label">body</label>
-                <textarea class="form-control" id="body"></textarea>
+                <textarea class="form-control" id="body" name="body"></textarea>
             </div>
             <div class="mb-3">
                 <button class="btn btn-primary">Submit</button>
