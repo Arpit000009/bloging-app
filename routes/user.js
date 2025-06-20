@@ -9,19 +9,41 @@ router.get('/signup',(req,res)=>{
     return res.render('signup');
 });
 
-router.post('/signin',async(req,res)=>{
-    const {email,password} = req.body;
-   try{ const token =  await User.matchPasswordAndGenrateToken(email,password);
+router.post('/signin', async (req, res) => {
+    const { email, password } = req.body;
 
-    console.log('token',token)
-    return res.cookie('token',token).redirect('/')
-   } catch(error){
-    return res.render("signin",{
-        error:"incorrect email or password",
-  
-   });
-}
+    try {
+        const token = await User.matchPasswordAndGenrateToken(email, password);
+
+        if (!token) {
+            // No token, show error page
+            return res.render("signin", {
+                error: "Invalid email or password",
+            });
+        }
+
+        // Only send one response
+        res.cookie("token", token);
+        return res.redirect("/");
+
+    } catch (err) {
+        // Log and respond only once
+        console.error("Signin error:", err);
+
+        // Safely render error page
+        if (!res.headersSent) {
+            return res.render("signin", {
+                error: "Something went wrong. Try again.",
+            });
+        }
+    }
 });
+
+
+
+router.get('/logout',(req,res)=>{
+    res.clearCookie("token").redirect("/")
+})
 
 router.post('/signup',async(req,res)=>{
     const {fullName,email,password} = req.body;
