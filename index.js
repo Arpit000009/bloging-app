@@ -4,6 +4,7 @@ const mongoose = require('mongoose')
 const cookieParser = require('cookie-parser')
 const Blog = require('./models/blog')
 
+
 const userRouter = require('./routes/user');
 const blogRoute = require('./routes/blog');
 
@@ -11,6 +12,8 @@ const { checkForAuthenticationCookie } = require("./middlewares/authentication")
 
 const app = express();
 const PORT = 8000;
+
+app.use(express.static(path.join(__dirname, 'public')));
 
 mongoose.connect('mongodb://localhost:27017/blogify').then((e) =>console.log("mongodb Connected"))
 
