@@ -2,38 +2,160 @@
 <html lang="en">
 
 <head>
+    <title>Sign In | Blogify</title>
+    <%- include('./partials/head.ejs') %>
+        <style>
+            :root {
+                --primary-color: #4361ee;
+                --secondary-color: #3f37c9;
+                --accent-color: #4895ef;
+                --light-color: #f8f9fa;
+                --dark-color: #212529;
+            }
 
-    <title>Signin</title>
+            body {
+                background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+                min-height: 100vh;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            }
+
+            .signin-form-container {
+                background-color: rgba(255, 255, 255, 0.95);
+                border-radius: 15px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                padding: 2.5rem;
+                max-width: 500px;
+                margin: auto;
+                margin-top: 5rem;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .signin-form-container::before {
+                content: "";
+                position: absolute;
+                top: -20px;
+                right: -20px;
+                width: 100px;
+                height: 100px;
+                background: var(--accent-color);
+                border-radius: 50%;
+                opacity: 0.1;
+            }
+
+            .signin-form-container::after {
+                content: "";
+                position: absolute;
+                bottom: -30px;
+                left: -30px;
+                width: 140px;
+                height: 140px;
+                background: var(--primary-color);
+                border-radius: 50%;
+                opacity: 0.1;
+            }
+
+            .form-title {
+                color: var(--dark-color);
+                font-weight: 700;
+                margin-bottom: 2rem;
+                position: relative;
+                display: inline-block;
+            }
+
+            .form-title::after {
+                content: "";
+                position: absolute;
+                bottom: -8px;
+                left: 0;
+                width: 60px;
+                height: 4px;
+                background-color: var(--primary-color);
+                border-radius: 2px;
+            }
+
+            .form-control {
+                border-radius: 8px;
+                padding: 0.75rem 1rem;
+                border: 1px solid #dee2e6;
+                transition: all 0.3s ease;
+            }
+
+            .form-control:focus {
+                box-shadow: 0 0 0 0.25rem rgba(67, 97, 238, 0.25);
+                border-color: var(--primary-color);
+            }
+
+            .form-label {
+                font-weight: 600;
+                color: #495057;
+            }
+
+            .btn-primary {
+                background-color: var(--primary-color);
+                border-color: var(--primary-color);
+                border-radius: 8px;
+                padding: 0.65rem 2rem;
+                font-weight: 600;
+                transition: all 0.3s ease;
+            }
+
+            .btn-primary:hover {
+                background-color: var(--secondary-color);
+                border-color: var(--secondary-color);
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            }
+
+            .alert {
+                border-radius: 8px;
+            }
+
+            @media (max-width: 576px) {
+                .signin-form-container {
+                    padding: 1.5rem;
+                    margin-top: 3rem;
+                }
+            }
+        </style>
 </head>
-<%-include('./partials/head.ejs') %>
 
-    <body>
-        <%-include('./partials/nav.ejs') %>
+<body>
+    <%- include('./partials/nav.ejs') %>
 
-            <div class="container mt-4">
+        <div class="container">
+            <div class="signin-form-container">
+                <h2 class="form-title text-center">Sign In</h2>
+
                 <% if (typeof error !=='undefined' ) { %>
                     <div class="alert alert-danger" role="alert">
                         <%= error %>
-                    </div> <% } %>
-                    
-                <form action="/user/signin" method="post">
-                    
-                    <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Email address</label>
-                        <input type="email" name="email" class="form-control" id="exampleInputEmail1"
-                            aria-describedby="emailHelp">
-                        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
                     </div>
-                    <div class="mb-3">
-                        <label for="exampleInputPassword1" class="form-label">Password</label>
-                        <input name="password" type="password" class="form-control" id="exampleInputPassword1">
-                    </div>
+                    <% } %>
 
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
+                        <form action="/user/signin" method="post">
+                            <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Email address</label>
+                                <input type="email" name="email" class="form-control" id="exampleInputEmail1" required>
+                                <div class="form-text">We'll never share your email with anyone else.</div>
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="exampleInputPassword1" class="form-label">Password</label>
+                                <input type="password" name="password" class="form-control" id="exampleInputPassword1"
+                                    required>
+                            </div>
+
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-sign-in-alt me-2"></i> Sign In
+                                </button>
+                            </div>
+                        </form>
             </div>
+        </div>
 
-            <%-include('./partials/scripts.ejs') %>
-    </body>
+        <%- include('./partials/scripts.ejs') %>
+</body>
 
 </html>

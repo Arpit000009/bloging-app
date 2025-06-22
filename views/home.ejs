@@ -2,38 +2,102 @@
 <html lang="en">
 
 <head>
-    <title>Homepage</title>
+    <title>Homepage | Blogify</title>
     <%- include('./partials/head.ejs') %>
+        <style>
+            body {
+                background: linear-gradient(to right, #f5f7fa, #c3cfe2);
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            }
+
+            .card {
+                border-radius: 15px;
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+
+            .card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            }
+
+            .card-img-top {
+                height: 200px;
+                object-fit: cover;
+                border-top-left-radius: 15px;
+                border-top-right-radius: 15px;
+            }
+
+            .card-title {
+                font-weight: 700;
+                color: #343a40;
+            }
+
+            .btn-primary {
+                background-color: #4361ee;
+                border-color: #4361ee;
+                font-weight: 600;
+                border-radius: 8px;
+            }
+
+            .btn-primary:hover {
+                background-color: #3f37c9;
+                border-color: #3f37c9;
+            }
+
+            .author-info {
+                display: flex;
+                align-items: center;
+                margin-bottom: 1rem;
+            }
+
+            .author-info img {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                object-fit: cover;
+                margin-right: 10px;
+            }
+
+            .author-info span {
+                font-weight: 500;
+                color: #495057;
+            }
+
+            @media (max-width: 576px) {
+                .card-title {
+                    font-size: 1.1rem;
+                }
+            }
+        </style>
 </head>
 
 <body>
     <%- include('./partials/nav.ejs') %>
 
-        <div class="container mt-4">
+        <div class="container mt-5">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
                 <% blogs.forEach(blog=> { %>
                     <div class="col">
                         <div class="card h-100 shadow-sm border-0">
-                            <img src="<%= blog.coverImage %>" class="card-img-top" alt="Blog Cover"
-                                style="height: 200px; object-fit: cover;">
+                            <img src="<%= blog.coverImage %>" class="card-img-top" alt="Blog Cover">
 
-                            <div class="card-body d-flex flex-column justify-content-between">
+                            <div class="card-body d-flex flex-column">
                                 <h5 class="card-title mb-3">
                                     <%= blog.title %>
                                 </h5>
 
                                 <% if (blog.createdBy) { %>
-                                    <div class="d-flex align-items-center mb-3">
-                                        <img src="/images/default.png"
-                                            width="40" height="40"
-                                            style="border-radius: 50%; object-fit: cover; margin-right: 10px;">
+                                    <div class="author-info">
+                                        <img src="/images/default.png" alt="Author">
                                         <span>
                                             <%= blog.createdBy.fullName %>
                                         </span>
                                     </div>
                                     <% } %>
 
-                                        <a href="/blog/<%= blog._id %>" class="btn btn-primary mt-auto">Read Blog</a>
+                                        <a href="/blog/<%= blog._id %>" class="btn btn-primary mt-auto">
+                                            <i class="fas fa-book-open me-1"></i> Read Blog
+                                        </a>
                             </div>
                         </div>
                     </div>
