@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>About Us | ChronoBlogs</title>
+    <%- include('./partials/head.ejs') %>
+        <style>
+            body {
+                background: linear-gradient(to right, #f8f9fa, #dee2e6);
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            }
+
+            .about-container {
+                max-width: 900px;
+                margin: auto;
+                padding: 3rem 1.5rem;
+                background: white;
+                border-radius: 12px;
+                box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+            }
+
+            .about-heading {
+                font-size: 2.5rem;
+                font-weight: 700;
+                color: #212529;
+                margin-bottom: 1rem;
+            }
+
+            .about-subheading {
+                font-size: 1.2rem;
+                color: #6c757d;
+                margin-bottom: 2rem;
+            }
+
+            .about-image {
+                width: 100%;
+                border-radius: 10px;
+                object-fit: cover;
+                box-shadow: 0 4px 18px rgba(0, 0, 0, 0.1);
+                margin-bottom: 2rem;
+            }
+
+            .highlight {
+                color: #4361ee;
+                font-weight: 600;
+            }
+
+            .icon {
+                color: #4361ee;
+                margin-right: 8px;
+            }
+
+            .about-section {
+                margin-bottom: 2rem;
+            }
+        </style>
+</head>
+
+<body>
+    <%- include('./partials/nav.ejs') %>
+
+        <div class="container mt-5 mb-5">
+            <div class="about-container">
+                <h1 class="about-heading text-center">About <span class="highlight">ChronoBlogs</span></h1>
+                <p class="about-subheading text-center">A platform where history breathes, wars echo, and geopolitics
+                    unfolds.</p>
+
+                    <img src="/images/geopolitics.png" class="about-image">
+
+
+                <div class="about-section">
+                    <h4><i class="fas fa-pen-nib icon"></i>What is Blogify?</h4>
+                    <p>
+                        <strong>Blogify</strong> is a modern blogging platform where enthusiasts, learners, and writers
+                        come together to share deep insights into the world of <span class="highlight">history, wars,
+                            geopolitics</span>, and even aspects of <span class="highlight">geography</span>. Whether
+                        you're a passionate storyteller, a curious reader, or a political thinker — this space welcomes
+                        all.
+                    </p>
+                </div>
+
+                <div class="about-section">
+                    <h4><i class="fas fa-globe icon"></i>Why ChronoBlogs?</h4>
+                    <p>
+                        In an age where quick news dominates, Blogify offers a place for thoughtful content. We aim to
+                        inspire meaningful discussion, educate the audience, and preserve narratives of our past and
+                        present global dynamics. From ancient battles to modern borders, our blogs cover it all.
+                    </p>
+                </div>
+
+                <div class="about-section">
+                    <h4><i class="fas fa-users icon"></i>Who Can Join?</h4>
+                    <p>
+                        Anyone with a passion to write and share their views can sign up, create a blog, and become part
+                        of our growing community. Our intuitive interface and content tools make publishing easy and
+                        accessible for all.
+                    </p>
+                </div>
+
+                <p class="text-center mt-4">
+                    <em>Join ChronoBlogs today and let your voice shape the conversation of tomorrow.</em>
+                </p>
+            </div>
+        </div>
+
+        <%- include('./partials/scripts.ejs') %>
+</body>
+
+</html>
